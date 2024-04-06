@@ -1,4 +1,4 @@
-using AutoMarket.Data;
+using AutoMarket.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +12,7 @@ namespace AutoMarket
 
             
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            builder.Services.AddDbContext<AutoMarketDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -23,7 +23,7 @@ namespace AutoMarket
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<AutoMarketDbContext>();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
