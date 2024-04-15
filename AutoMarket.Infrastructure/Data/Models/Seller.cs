@@ -6,8 +6,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AutoMarket.Infrastructure.Data.Constants.DataConstants;
 
 namespace AutoMarket.Infrastructure.Data.Models
+
 {
     public class Seller
     {
@@ -15,10 +17,13 @@ namespace AutoMarket.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(AgentNameMaxLength)]
         public string FullName { get; set; } = string.Empty;
         [Required]
+        [MaxLength(EmailMaxLength)]
         public string Email { get; set; } = string.Empty;
         [Required]
+        [MaxLength(PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]

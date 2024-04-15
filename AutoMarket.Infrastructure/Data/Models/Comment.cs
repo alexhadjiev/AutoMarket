@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AutoMarket.Infrastructure.Data.Constants.DataConstants;
 
 namespace AutoMarket.Infrastructure.Data.Models
 {
@@ -14,6 +15,7 @@ namespace AutoMarket.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(CommentMaxLength)]
         public string Content { get; set; } = string.Empty;
 
         [Required]

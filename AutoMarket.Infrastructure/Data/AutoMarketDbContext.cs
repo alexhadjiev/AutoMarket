@@ -1,4 +1,5 @@
 ﻿using AutoMarket.Infrastructure.Data.Models;
+using AutoMarket.Infrastructure.Data.Seed;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,18 +27,10 @@ namespace AutoMarket.Infrastructure.Data
              .HasForeignKey(c => c.CarId)
              .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Entity<Car>()
-                 .HasOne(c => c.Category)
-                 .WithMany(c => c.Cars)
-                 .HasForeignKey(c => c.CategoryId)
-                 .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Car>()
-               .HasOne(c => c.Seller)
-               .WithMany(s => s.Cars)
-               .HasForeignKey(c => c.SellerId)
-               .OnDelete(DeleteBehavior.Restrict);
-
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new SellerConfiguration());
+            builder.ApplyConfiguration(new CategoryConfiguration());
+            builder.ApplyConfiguration(new CarConfiguration());
 
             base.OnModelCreating(builder);
         }
@@ -52,4 +45,6 @@ namespace AutoMarket.Infrastructure.Data
 
         public DbSet<Favorite> Favorites { get; set; } = null!;
     }
+
+   
 }
