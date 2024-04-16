@@ -1,3 +1,5 @@
+using AutoMarket.core.Contracts;
+using AutoMarket.core.Services;
 using AutoMarket.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +27,8 @@ namespace AutoMarket
             })
                 .AddEntityFrameworkStores<AutoMarketDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<ICarService, CarService>();
 
             var app = builder.Build();
 
